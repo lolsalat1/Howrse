@@ -61,7 +61,7 @@ public class BasicBreedTasksAsync extends AsyncTask{
 				if(!horses.hasNext())
 					return true;
 				curHorse = horses.next();
-				curTask = 0;
+				curTask = -1;
 			}
 			curTask ++;
 		}
