@@ -20,7 +20,7 @@ public class BasicBreedTasksAsync extends AsyncTask{
 		this.api = bot.account.api;
 		this.onEnd = onEnd;
 		logger = new Logger("[BREED][" + breed.name + "][" + bot.username + "]");
-		
+		curTask = -1;
 		curHorse = horses.next();
 	}
 	
