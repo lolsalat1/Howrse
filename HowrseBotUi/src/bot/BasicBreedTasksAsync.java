@@ -40,7 +40,7 @@ public class BasicBreedTasksAsync extends AsyncTask{
 	public int taskAmmount;
 	public API api;
 	public Runnable onEnd;
-	
+	public boolean done;
 	
 	boolean[] tasks;
 	
@@ -168,9 +168,9 @@ public class BasicBreedTasksAsync extends AsyncTask{
 	@Override
 	public boolean loop() {
 		long s = System.currentTimeMillis();
-		boolean finished = doNextTask();
+		done = doNextTask();
 		endTime += System.currentTimeMillis() - s - timeout;
-		return finished;
+		return done;
 	}
 
 	@Override
@@ -180,7 +180,9 @@ public class BasicBreedTasksAsync extends AsyncTask{
 
 	@Override
 	public float getProgress() {
-		return (float)doneHorses / (float)horseAmmount;
+		if(done)
+			return 1;
+		return (float)(doneHorses*taskAmmount + curTask) / (float)(horseAmmount * taskAmmount);
 	}
 
 	@Override

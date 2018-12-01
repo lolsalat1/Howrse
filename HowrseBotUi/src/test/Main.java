@@ -16,8 +16,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String username = JOptionPane.showInputDialog("Username");
-		String password = JOptionPane.showInputDialog("Password");
+		String username = "lolsalat";//JOptionPane.showInputDialog("Username");
+		String password = "l0lsalat123";//JOptionPane.showInputDialog("Password");
 		SERVER_COUNTRY locale = SERVER_COUNTRY.DE;
 		
 		Bot bot = new Bot(username, password, locale);
@@ -42,7 +42,7 @@ public class Main {
 		
 		Breed s = (Breed) JOptionPane.showInputDialog(null, "Choose breed", "breed selector", JOptionPane.PLAIN_MESSAGE, null, breeds, "default");
 		
-		Return<BasicBreedTasksAsync> ret = bot.basicBreedTasks(s.id, true, true, true, true, true, true, true, true, 1000, new Runnable() {
+		Return<BasicBreedTasksAsync> ret = bot.basicBreedTasks(s.id, true, true, true, true, true, true, true, true, 500, new Runnable() {
 
 			@Override
 			public void run() {
