@@ -24,6 +24,7 @@ public class Main {
 		
 		bot.account.api.requests.setTimeout(300);
 		
+		bot.logger.printlevel = 1;
 		
 		Return<HashMap<Integer,Breed>> b = bot.getBreeds();
 		
@@ -61,8 +62,8 @@ public class Main {
 		boolean b1 = true;
 		
 		while(b1) {
-			Sleeper.sleep(1000);
-			System.out.println("progress: " + ret.data.getProgress() + "%");
+			Sleeper.sleep(5000);
+			System.out.println("progress: " + (ret.data.getProgress() * 100) + "%");
 			System.out.println("ETA: " + (ret.data.getEta() / 1000) + "sec.");
 			b1 = ret.data.running();
 		}
