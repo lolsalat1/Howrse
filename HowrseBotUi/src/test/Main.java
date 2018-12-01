@@ -61,6 +61,8 @@ public class Main {
 		
 		while(ret.data.running()) {
 			Sleeper.sleep(5000);
+			if(ret.data.getProgress() == 1)
+				break;
 			System.out.println("progress: " + (ret.data.getProgress() * 100) + "%");
 			System.out.println("ETA: " + (ret.data.getEta() / 1000) + "sec.");
 		}
