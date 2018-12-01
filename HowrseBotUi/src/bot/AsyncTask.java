@@ -34,7 +34,7 @@ public abstract class AsyncTask {
 			@Override
 			public void run() {
 				doStart();
-				while(loop())
+				while(!loop())
 					if(forceStop)break;
 				onEnd(forceStop);
 			}

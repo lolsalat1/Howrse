@@ -48,7 +48,7 @@ public class Bot {
 				breed = account.breeds.get(id);
 			} else {
 				logger.debugln("No cached breed " + id + " for " + username);
-				getBreeds(true);
+				getBreeds();
 				if(!account.breeds.containsKey(id)) {
 					logger.warnln("Breed " + id + " does not exist for " + username);
 					return new Return<Breed>(null, false);
@@ -75,7 +75,7 @@ public class Bot {
 			return new Return<Breed>(breed, sucess);
 	}
 	
-	public Return<HashMap<Integer, Breed>> getBreeds(boolean forceUpdate){
+	public Return<HashMap<Integer, Breed>> getBreeds(){
 		try {
 			HashMap<Integer, Breed> breeds = account.api.getBreeds();
 			
@@ -110,6 +110,23 @@ public class Bot {
 			logger.errorEx(e);
 			return false;
 		}
+	}
+
+	public void logout() {
+		try {
+			DefaultResponse response = account.logout();
+			if(!response.sucess) {
+				logger.warnln("Couldn't log out");
+				return;
+			}
+			logger.infoln("Logged out sucessfully");
+			loggedIn = false;
+		} catch(ApiException e) {
+			logger.warnln("Logout failed");
+			logger.warnEx(e);
+		}
+		
+		
 	}
 	
 }

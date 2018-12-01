@@ -45,15 +45,25 @@ public class BasicBreedTasksAsync extends AsyncTask{
 	boolean[] tasks;
 	
 	public boolean doNextTask() {
+		curTask ++;
+		if(curTask >= tasks.length) {
+			doneHorses ++;
+			logger.infoln("Horse " + doneHorses + "/" + horseAmmount + " finished!");
+			if(!horses.hasNext())
+				return true;
+			curHorse = horses.next();
+			curTask = 0;
+		}
 		while(!tasks[curTask]) {
-			curTask ++;
-			if(curTask == tasks.length) {
+			if(curTask >= tasks.length) {
 				doneHorses ++;
 				logger.infoln("Horse " + doneHorses + "/" + horseAmmount + " finished!");
 				if(!horses.hasNext())
 					return true;
 				curHorse = horses.next();
+				curTask = 0;
 			}
+			curTask ++;
 		}
 		if (doTask(curTask))
 			Sleeper.sleep(timeout);
@@ -125,7 +135,7 @@ public class BasicBreedTasksAsync extends AsyncTask{
 			}
 			return true;
 		} else if (id == 6) {
-			if(!curHorse.tasks.feed.available)
+			if(!curHorse.tasks.feed.isSuggested())
 				return false;
 			
 			if(curHorse.tasks.feed.performTask(curHorse, api).sucess) {

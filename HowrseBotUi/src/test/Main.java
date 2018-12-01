@@ -22,14 +22,15 @@ public class Main {
 		
 		Bot bot = new Bot(username, password, locale);
 		
-		Return<HashMap<Integer,Breed>> b = bot.getBreeds(true);
+		bot.account.api.requests.setTimeout(300);
+		
+		
+		Return<HashMap<Integer,Breed>> b = bot.getBreeds();
 		
 		if(!b.sucess) {
 			System.err.println("ERROR");
 			System.exit(-1);
 		}
-		
-		
 		
 		Breed[] breeds = new Breed[b.data.size()];
 		
@@ -40,11 +41,12 @@ public class Main {
 		
 		Breed s = (Breed) JOptionPane.showInputDialog(null, "Choose breed", "breed selector", JOptionPane.PLAIN_MESSAGE, null, breeds, "default");
 		
-		Return<BasicBreedTasksAsync> ret = bot.basicBreedTasks(s.id, true, true, true, true, true, true, true, true, 500, new Runnable() {
+		Return<BasicBreedTasksAsync> ret = bot.basicBreedTasks(s.id, true, true, true, true, true, true, true, true, 1000, new Runnable() {
 
 			@Override
 			public void run() {
 				JOptionPane.showMessageDialog(null, "FINISHED!", "Bot", JOptionPane.PLAIN_MESSAGE);
+				bot.logout();
 			}
 			
 		});
