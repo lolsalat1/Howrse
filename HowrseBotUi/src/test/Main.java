@@ -59,13 +59,10 @@ public class Main {
 		
 		ret.data.start();
 		
-		boolean b1 = true;
-		
-		while(b1) {
+		while(ret.data.running()) {
 			Sleeper.sleep(5000);
 			System.out.println("progress: " + (ret.data.getProgress() * 100) + "%");
 			System.out.println("ETA: " + (ret.data.getEta() / 1000) + "sec.");
-			b1 = ret.data.running();
 		}
 		
 	}
