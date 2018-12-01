@@ -29,7 +29,7 @@ public abstract class AsyncTask {
 			System.err.println("TASK ALREDY RUNNING");
 			return;
 		}
-		new Thread() {
+		thread = new Thread() {
 			
 			@Override
 			public void run() {
@@ -39,7 +39,8 @@ public abstract class AsyncTask {
 				onEnd(forceStop);
 			}
 			
-		}.start();
+		};
+		thread.start();
 	}
 	
 	public void stop() {

@@ -58,10 +58,13 @@ public class Main {
 		
 		ret.data.start();
 		
-		while(ret.data.running()) {
+		boolean b1 = true;
+		
+		while(b1) {
 			Sleeper.sleep(1000);
 			System.out.println("progress: " + ret.data.getProgress() + "%");
 			System.out.println("ETA: " + (ret.data.getEta() / 1000) + "sec.");
+			b1 = ret.data.running();
 		}
 		
 	}
