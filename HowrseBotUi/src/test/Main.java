@@ -16,8 +16,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String username = "lolsalat";//JOptionPane.showInputDialog("Username");
-		String password = "l0lsalat123";//JOptionPane.showInputDialog("Password");
+		String username = JOptionPane.showInputDialog("Username");
+		String password = JOptionPane.showInputDialog("Password");
 		SERVER_COUNTRY locale = SERVER_COUNTRY.DE;
 		
 		Bot bot = new Bot(username, password, locale);
