@@ -22,13 +22,11 @@ public class Main {
 		
 		Bot bot = new Bot(username, password, locale);
 		
-		bot.loggedIn = bot.login();
-		
 		
 		bot.account.api.requests.setTimeout(300);
 		
-		bot.logger.printlevel = 0;
-		RequestHandler.debug = true;
+		bot.logger.printlevel = 1;
+		RequestHandler.debug = !true;
 		
 		Return<HashMap<Integer,Breed>> b = bot.getBreeds();
 		

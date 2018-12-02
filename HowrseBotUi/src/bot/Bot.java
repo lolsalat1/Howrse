@@ -76,6 +76,9 @@ public class Bot {
 	
 	public Return<HashMap<Integer, Breed>> getBreeds(){
 		try {
+			if(!loggedIn)
+				if(!login()) 
+					return new Return<HashMap<Integer, Breed>>(null, false);
 			HashMap<Integer, Breed> breeds = account.api.getBreeds();
 			
 			boolean sucess = !breeds.isEmpty();
