@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import api.API.SERVER_COUNTRY;
 import api.ApiException;
