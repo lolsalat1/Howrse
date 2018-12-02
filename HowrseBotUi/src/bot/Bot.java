@@ -98,6 +98,7 @@ public class Bot {
 			if(response.sucess) {
 				logger.infoln("Logged in as " + username);
 				logger.debugln("sessionprod: " + account.api.sessionprod);
+				loggedIn = true;
 				return true;
 			} else {
 				logger.errorln("Couldn't log in as " + username);
