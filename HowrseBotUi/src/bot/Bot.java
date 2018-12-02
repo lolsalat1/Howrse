@@ -41,8 +41,17 @@ public class Bot {
 	
 	public Return<Breed> getBreed(int id, boolean update) {
 			Breed breed;
-			
-			if(account.breeds.containsKey(id)) {
+			if(account.breeds == null) {
+				
+					logger.debugln("No breeds cached for " + username);
+					getBreeds();
+					if(!account.breeds.containsKey(id)) {
+						logger.warnln("Breed " + id + " does not exist for " + username);
+						return new Return<Breed>(null, false);
+					} else {
+						breed = account.breeds.get(id);
+					}
+			} else if(account.breeds.containsKey(id)) {
 				logger.debugln("Getting cached breed " + id + " for " + username);
 				breed = account.breeds.get(id);
 			} else {
