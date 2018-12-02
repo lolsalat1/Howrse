@@ -28,7 +28,6 @@ public class Bot {
 	public boolean loggedIn;
 	public boolean forceStop;
 	
-	
 	public Return<BasicBreedTasksAsync> basicBreedTasks(int id, boolean drink, boolean stroke, boolean groom, boolean carrot, boolean mash, boolean suckle, boolean feed, boolean sleep, long timeout, Runnable onEnd) {
 		if(!loggedIn)
 			if(!login()) 
