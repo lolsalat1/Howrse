@@ -11,12 +11,12 @@ import utils.Sleeper;
 
 public class BasicBreedTasksAsync extends AsyncTask{
 
-	public BasicBreedTasksAsync(Breed breed, boolean drink, boolean stroke, boolean groom, boolean carrot, boolean mash, boolean suckle, boolean feed, boolean sleep, long timeout, Bot bot, Runnable onEnd) {
+	public BasicBreedTasksAsync(Breed breed, boolean drink, boolean stroke, boolean groom, boolean carrot, boolean mash, boolean suckle, boolean feed, boolean sleep, boolean centreMission, long timeout, Bot bot, Runnable onEnd) {
 		horseAmmount = breed.horses.size();
 		horses = breed.horses.values().iterator();
 		this.timeout = timeout;
-		taskAmmount = (drink ? 1 : 0) + (stroke ? 1 : 0) + (groom ? 1 : 0) + (carrot ? 1 : 0) + (mash ? 1 : 0) + (suckle ? 1 : 0) + (feed ? 1 : 0) + (sleep ? 1 : 0);
-		tasks = new boolean[] {drink, stroke, groom, carrot, mash, suckle, feed, sleep};
+		taskAmmount = (drink ? 1 : 0) + (stroke ? 1 : 0) + (groom ? 1 : 0) + (carrot ? 1 : 0) + (mash ? 1 : 0) + (suckle ? 1 : 0) + (feed ? 1 : 0) + (sleep ? 1 : 0) + (centreMission ? 1 : 0);
+		tasks = new boolean[] {drink, stroke, groom, carrot, mash, suckle, feed, sleep, centreMission};
 		this.api = bot.account.api;
 		this.onEnd = onEnd;
 		logger = new Logger("[BREED][" + breed.name + "][" + bot.username + "]");
@@ -153,6 +153,16 @@ public class BasicBreedTasksAsync extends AsyncTask{
 				logger.debugln("Horse " + curHorse.id + " sleep sucess");
 			} else {
 				logger.warnln("Horse " + curHorse.id + " sleep failed");
+			}
+			return true;
+		} else if (id == 8) {
+			if(!curHorse.tasks.centreMission.available)
+				return false;
+			
+			if(curHorse.tasks.centreMission.performTask(curHorse, api).sucess) {
+				logger.debugln("Horse " + curHorse.id + " centreMission sucess");
+			} else {
+				logger.warnln("Horse " + curHorse.id + " centreMission failed");
 			}
 			return true;
 		} else {

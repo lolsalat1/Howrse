@@ -6,7 +6,9 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 import api.API.SERVER_COUNTRY;
+import api.ApiException;
 import api.Breed;
+import api.request.MiscRequests;
 import bot.BasicBreedTasksAsync;
 import bot.Bot;
 import utils.Return;
@@ -42,7 +44,7 @@ public class Main {
 		
 		Breed s = (Breed) JOptionPane.showInputDialog(null, "Choose breed", "breed selector", JOptionPane.PLAIN_MESSAGE, null, breeds, "default");
 		
-		Return<BasicBreedTasksAsync> ret = bot.basicBreedTasks(s.id, true, true, true, true, true, true, true, true, 500, new Runnable() {
+		Return<BasicBreedTasksAsync> ret = bot.basicBreedTasks(s.id, true, true, true, true, true, true, true, true, true, 500, new Runnable() {
 
 			@Override
 			public void run() {

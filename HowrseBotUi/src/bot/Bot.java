@@ -28,14 +28,14 @@ public class Bot {
 	public boolean loggedIn;
 	public boolean forceStop;
 	
-	public Return<BasicBreedTasksAsync> basicBreedTasks(int id, boolean drink, boolean stroke, boolean groom, boolean carrot, boolean mash, boolean suckle, boolean feed, boolean sleep, long timeout, Runnable onEnd) {
+	public Return<BasicBreedTasksAsync> basicBreedTasks(int id, boolean drink, boolean stroke, boolean groom, boolean carrot, boolean mash, boolean suckle, boolean feed, boolean sleep, boolean centreMission, long timeout, Runnable onEnd) {
 		if(!loggedIn)
 			if(!login()) 
 				return new Return<BasicBreedTasksAsync>(null, false);
 		Return<Breed> res = getBreed(id, true);
 		if(!res.sucess)
 			return new Return<BasicBreedTasksAsync>(null, false);
-		BasicBreedTasksAsync task = new BasicBreedTasksAsync(res.data, drink, stroke, groom, carrot, mash, suckle, feed, sleep, timeout, this, onEnd);
+		BasicBreedTasksAsync task = new BasicBreedTasksAsync(res.data, drink, stroke, groom, carrot, mash, suckle, feed, sleep, centreMission, timeout, this, onEnd);
 		return new Return<BasicBreedTasksAsync>(task, true);
 	}
 	
