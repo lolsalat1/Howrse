@@ -52,6 +52,11 @@ public class BasicBreedTasksAsync extends AsyncTask{
 			if(!horses.hasNext())
 				return true;
 			curHorse = horses.next();
+			try {
+				curHorse.updateHorse(api);
+			} catch (ApiException e) {
+				e.printStackTrace();
+			}
 			curTask = 0;
 		}
 		while(!tasks[curTask]) {
@@ -61,6 +66,11 @@ public class BasicBreedTasksAsync extends AsyncTask{
 				if(!horses.hasNext())
 					return true;
 				curHorse = horses.next();
+				try {
+					curHorse.updateHorse(api);
+				} catch (ApiException e) {
+					e.printStackTrace();
+				}
 				curTask = -1;
 			}
 			curTask ++;
@@ -72,7 +82,7 @@ public class BasicBreedTasksAsync extends AsyncTask{
 
 	public boolean doTask(int id) {
 		try {
-			curHorse.updateHorse(api);
+			
 		if(id == 0) {
 			if(!curHorse.tasks.drink.available)
 				return false;

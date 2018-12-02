@@ -6,6 +6,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import api.API.SERVER_COUNTRY;
 import api.Breed;
+import api.request.RequestHandler;
 import bot.BasicBreedTasksAsync;
 import bot.Bot;
 import utils.Return;
@@ -21,9 +22,13 @@ public class Main {
 		
 		Bot bot = new Bot(username, password, locale);
 		
+		bot.loggedIn = bot.login();
+		
+		
 		bot.account.api.requests.setTimeout(300);
 		
-		bot.logger.printlevel = 1;
+		bot.logger.printlevel = 0;
+		RequestHandler.debug = true;
 		
 		Return<HashMap<Integer,Breed>> b = bot.getBreeds();
 		
