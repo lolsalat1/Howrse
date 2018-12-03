@@ -22,6 +22,12 @@ public class BasicBreedTasksAsync extends AsyncTask{
 		logger = new Logger("[BREED][" + breed.name + "][" + bot.username + "]");
 		curTask = -1;
 		curHorse = horses.next();
+		try {
+			curHorse.updateHorse(api);
+		} catch (ApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Logger logger;
@@ -156,6 +162,7 @@ public class BasicBreedTasksAsync extends AsyncTask{
 			return true;
 			
 		} else if (id == 7) {
+			
 			if(!curHorse.tasks.sleep.available)
 				return false;
 			
